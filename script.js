@@ -15,17 +15,18 @@ async function getL1GasFee() {
       "<tx-hash>",
     ]);
     rawTx = rawTx.slice(2).toUpperCase();
+    const blockNumber = "<l2-block-number>";
     const l1BaseFee = await gasPriceOracle.l1BaseFee({
-      blockTag: "<l2-block-number>",
+      blockTag: blockNumber,
     });
     const baseFeeScalar = await gasPriceOracle.baseFeeScalar({
-      blockTag: "<l2-block-number>",
+      blockTag: blockNumber,
     });
     const blobBaseFee = await gasPriceOracle.blobBaseFee({
-      blockTag: "<l2-block-number>",
+      blockTag: blockNumber,
     });
     const blobBaseFeeScalar = await gasPriceOracle.blobBaseFeeScalar({
-      blockTag: "<l2-block-number>",
+      blockTag: blockNumber,
     });
     const binary = hexTobinary(rawTx);
     // Count zero bytes vs. other bytes
