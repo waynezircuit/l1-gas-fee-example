@@ -1,4 +1,4 @@
-const url = "<rpc-url>";
+const url = "https://zircuit1-mainnet.p2pify.com/";
 const { ethers } = require("ethers");
 const { oracle } = require("./GasPriceOracle.js");
 
@@ -12,10 +12,10 @@ async function getL1GasFee() {
       provider
     );
     let rawTx = await provider.send("eth_getRawTransactionByHash", [
-      "<tx-hash>",
+      "0xc7dcad2ff5e53620be6e22478b5ce6d0161185ba8bbb93aa52fdd2b95c0d9272",
     ]);
     rawTx = rawTx.slice(2).toUpperCase();
-    const blockNumber = "<l2-block-number>";
+    const blockNumber = 10919574;
     const l1BaseFee = await gasPriceOracle.l1BaseFee({
       blockTag: blockNumber,
     });
@@ -47,8 +47,8 @@ async function getL1GasFee() {
     }
     const txCompressedSize = (zeroBytes * 4 + otherBytes * 16) / 16;
     const weightedGasPrice =
-      16 * baseFeeScalar * l1BaseFee + blobBaseFeeScalar * blobBaseFee;
-    console.log((txCompressedSize * weightedGasPrice) / 1e6);
+      BigInt(16) * baseFeeScalar * l1BaseFee + blobBaseFeeScalar * blobBaseFee;
+    console.log((txCompressedSize * parseInt(weightedGasPrice)) / 1e6);
   } catch (error) {
     console.error("error:", error);
   }
