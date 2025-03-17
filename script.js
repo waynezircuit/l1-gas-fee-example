@@ -47,8 +47,8 @@ async function getL1GasFee() {
     }
     const txCompressedSize = (zeroBytes * 4 + otherBytes * 16) / 16;
     const weightedGasPrice =
-      BigInt(16) * baseFeeScalar * l1BaseFee + blobBaseFeeScalar * blobBaseFee;
-    console.log((txCompressedSize * parseInt(weightedGasPrice)) / 1e6);
+      16 * baseFeeScalar * l1BaseFee + blobBaseFeeScalar * blobBaseFee;
+    console.log((txCompressedSize * weightedGasPrice) / 1e6);
   } catch (error) {
     console.error("error:", error);
   }
